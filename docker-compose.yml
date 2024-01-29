@@ -1,0 +1,16 @@
+version: "3"
+services:
+  realworld_conduit_nextjs:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - WATCHPACK_POLLING=true
+    command: bash -c " npm install && npm run dev"
+    ports:
+      - 3000:3000
+    networks:
+      - realworld_conduit_sail
+networks:
+  realworld_conduit_sail:
+    external: true
