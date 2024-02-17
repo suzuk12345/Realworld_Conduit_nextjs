@@ -1,12 +1,11 @@
 "use client";
 
-import { apiUrl } from "@/lib/apiUrl";
-import { getCookie } from "cookies-next";
+import { createArticle } from "@/lib/article/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function CreateEditor() {
-  const router = useRouter();
+export default function Create() {
+  const router = useRouter()
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [body, setBody] = useState<string>("");
@@ -22,32 +21,6 @@ export default function CreateEditor() {
 
   const deleteTag = (deleteTag: string): void => {
     setTagList(tagList.filter((tag) => tag !== deleteTag));
-  };
-
-  const submitArticle = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/articles`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: JSON.stringify({
-          article: {
-            title: title,
-            description: description,
-            body: body,
-            tagList: tagList,
-          },
-        }),
-      });
-
-      if (response.ok) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -95,7 +68,7 @@ export default function CreateEditor() {
                     onKeyDown={addTag}
                   />
                   <div className="tag-list">
-                    {tagList.map((tag: string): JSX.Element => {
+                    {tagList.map((tag: string) => {
                       return (
                         <span key={tag} className="tag-default tag-pill">
                           <i
@@ -111,7 +84,7 @@ export default function CreateEditor() {
                 <button
                   className="btn btn-lg pull-xs-right btn-primary"
                   type="button"
-                  onClick={submitArticle}
+                  onClick={() => createArticle(title, description, body, tagList, router)}
                 >
                   Publish Article
                 </button>

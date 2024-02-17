@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthenticatedHeader from "@/ui/header";
-import Footer from "@/ui/footer";
+import Header from "@/ui/header/Header";
+import Footer from "@/ui/Footer";
 
 export const metadata: Metadata = {
   title: "Conduit",
@@ -30,7 +30,6 @@ export default function RootLayout({
         <link rel="stylesheet" href="//demo.productionready.io/main.css" />
       </head>
       <body>
-        <AuthenticatedHeader />
         {children}
         <Footer />
       </body>

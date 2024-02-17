@@ -1,41 +1,14 @@
 "use client";
 
-import { apiUrl } from "@/lib/apiUrl";
-import { Article } from "@/lib/article/utils";
-import { getCookie } from "cookies-next";
+import { Article, updateArticle } from "@/lib/article/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function UpdateEditor({ article }: { article: Article }) {
-  const router = useRouter();
+export default function Update({ article }: { article: Article }) {
+  const router = useRouter()
   const [title, setTitle] = useState<string>(article.title);
   const [description, setDescription] = useState<string>(article.description);
   const [body, setBody] = useState<string>(article.body);
-
-  const submitArticle = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/articles/${article.slug}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getCookie("token")}`,
-        },
-        body: JSON.stringify({
-          article: {
-            title: title,
-            description: description,
-            body: body,
-          },
-        }),
-      });
-
-      if (response.ok) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="editor-page">
@@ -78,7 +51,7 @@ export default function UpdateEditor({ article }: { article: Article }) {
                 <button
                   className="btn btn-lg pull-xs-right btn-primary"
                   type="button"
-                  onClick={submitArticle}
+                  onClick={() => updateArticle(article.slug, title, description, body, router)}
                 >
                   Update Article
                 </button>

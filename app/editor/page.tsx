@@ -1,9 +1,11 @@
-import CreateEditor from "@/ui/editor/create";
+import Create from "@/ui/editor/Create";
+import Header from "@/ui/header/Header";
 
 export default function Page() {
   return (
     <>
-      <CreateEditor />
+      <Header />
+      <Create />
     </>
   );
 }

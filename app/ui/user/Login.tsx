@@ -1,7 +1,7 @@
 "use client";
 
 import { apiUrl } from "@/lib/apiUrl";
-import { getCookie, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -12,21 +12,25 @@ export default function Login() {
 
   const login = async () => {
     try {
-      const response = await fetch(`${apiUrl}/users/login`, {
+      const response = await fetch(`${apiUrl}users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ user: { email: email, password: password } }),
-      });
+      })
 
       if (response.ok) {
-        const userObj = await response.json();
-        setCookie("token", userObj.user.token);
-        router.push("/");
+        const userObj = await response.json()
+
+        setCookie("token", userObj.user.token, {maxAge: 60 * 5})
+        // setCookie("token", userObj.user.token, {maxAge: 60 * 3, httpOnly: true})
+        setCookie("username", userObj.user.username, {maxAge: 60 * 5})
+        setCookie("image", userObj.user.image, {maxAge: 60 * 5})
+        router.push("/")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 
@@ -49,6 +53,7 @@ export default function Login() {
                 <input
                   className="form-control form-control-lg"
                   type="text"
+                  required
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -57,6 +62,7 @@ export default function Login() {
                 <input
                   className="form-control form-control-lg"
                   type="password"
+                  required
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />

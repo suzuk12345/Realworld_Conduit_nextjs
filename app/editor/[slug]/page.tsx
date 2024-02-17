@@ -1,7 +1,13 @@
 import { getArticle } from "@/lib/article/utils";
-import UpdateEditor from "@/ui/editor/update";
+import Update from "@/ui/editor/Update";
+import Header from "@/ui/header/Header";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug);
-  return <UpdateEditor article={article} />;
+  return (
+    <>
+      <Header />
+      <Update article={article} />
+    </>
+  )
 }
