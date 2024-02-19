@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 目次
 
-## Getting Started
+- [目次](#目次)
+- [Conduit](#conduit)
+- [使用技術](#使用技術)
+- [機能](#機能)
+    - [実装済み](#実装済み)
+    - [未実装](#未実装)
+- [セットアップ](#セットアップ)
+- [主要ディレクトリ/ファイル](#主要ディレクトリファイル)
+- [Vercel](#vercel)
 
-First, run the development server:
+# Conduit
+
+ブログプラットフォームを作る [RealWorld](https://github.com/gothinkster/realworld/tree/main) という OSS のプロジェクトがあります。RealWorld は実世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としたプロジェクトです。
+
+Conduit は [RealWorld](https://demo.realworld.io/#/) で作成する Medium.com のクローンサイトです。
+詳細な仕様については [Specs/Backend Specs](https://realworld-docs.netlify.app/docs/specs/backend-specs/introduction), [Specs/Frontend Specs](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates)で確認できます。
+
+今回は Conduit と同じ見た目・機能のサイトを `Next.js` で実装しています。
+
+バックエンドAPIのディレクトリは[こちら](https://github.com/suzuk12345/RealWorld_Conduit)
+
+# 使用技術
+- Next.js 14.1.0
+- Node.js 20.11.1
+- TypeScript 5.2.2
+
+# 機能
+
+### 実装済み
+
+-   JWT 認証
+-   ユーザー CRU-
+-   記事 CRUD
+-   タグ機能
+-   ダミー生成
+-   記事一覧ページネーション
+
+### 未実装
+
+-   記事へのコメント CR-D
+-   記事お気に入り
+-   記事マークダウン反映
+-   ユーザーフォロー
+-   テスト
+-   バリデーション
+
+# セットアップ
+
+リポジトリのクローンを作成し、プロジェクトフォルダーに移動
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/suzuk12345/realworld_conduit_nextjs.git
+cd realworld_conduit_nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+コンテナ起動
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+docker-compose build
+docker-compose up -d
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+バックエンドAPIのコンテナが起動しているのを確認してください。
 
-## Learn More
+バックエンドAPIのディレクトリは[こちら](https://github.com/suzuk12345/RealWorld_Conduit)
 
-To learn more about Next.js, take a look at the following resources:
+セットアップ完了 アプリにアクセスできます。
+- http://localhost:3000/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 主要ディレクトリ/ファイル
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ホーム 記事一覧(全体・ログインユーザーのみ)
+  - [app/page.tsx](https://github.com/suzuk12345/realworld_conduit_nextjs/blob/main/app/page.tsx)
+- 記事閲覧ページ
+  - [app/article/[slug]/page.tsx](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/article/%5Bslug%5D)
+- 記事新規作成ページ
+  - [app/editor/page.tsx](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/editor)
+- 記事編集ページ
+  - [app/editor/\[slug\]/page.tsx](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/editor/%5Bslug%5D)
+- ログインページ
+  - [app/login](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/login)
+- 関数や型定義置き場
+  - [app/lib](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/lib)
+- jsxを返すUIコンポーネント置き場
+  - [app/ui](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/ui)
 
-## Deploy on Vercel
+# Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+アプリはVercelにデプロイ済みです。以下URLからアクセスできます。
+- https://realworld-conduit-nextjs.vercel.app/
