@@ -8,6 +8,7 @@
     - [未実装](#未実装)
 - [セットアップ](#セットアップ)
 - [主要ディレクトリ/ファイル](#主要ディレクトリファイル)
+- [認証について](#認証について)
 - [Vercel](#vercel)
 
 # Conduit
@@ -45,6 +46,7 @@ Conduit は [RealWorld](https://demo.realworld.io/#/) で作成する Medium.com
 -   ユーザーフォロー
 -   テスト
 -   バリデーション
+-   CookieのHttpOnly,Secure,SameSite属性付与
 
 # セットアップ
 
@@ -85,6 +87,17 @@ docker-compose up -d
   - [app/lib](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/lib)
 - jsxを返すUIコンポーネント置き場
   - [app/ui](https://github.com/suzuk12345/realworld_conduit_nextjs/tree/main/app/ui)
+
+# 認証について
+ログインでJWTトークン発行
+↓
+期限付きでCookieに保存
+↓
+Cookieの有無をMiddlewareで確認してUIの出し分け(ヘッダー、記事の編集・削除ボタン、ログイン中ユーザーの記事一覧取得)・ページへのアクセス認可
+↓
+HTTPヘッダーにトークンを付与してリクエスト送信
+↓
+バックエンドのMiddlewareで認証・ユーザー識別処理
 
 # Vercel
 
