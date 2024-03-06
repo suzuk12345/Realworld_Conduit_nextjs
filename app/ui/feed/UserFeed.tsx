@@ -7,9 +7,10 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function UserFeed() {
-  const [currentUrl, setCurrentUrl] = useState<string | null>(`${apiUrl}articles/userFeed`)
-  const fetcher = async (url:string) => {
-    const res = await fetch(url, {
+  const url: string = `${apiUrl}articles/userFeed`
+  const [currentPage, setCurrentPage] = useState<string>(url)
+  const fetcher = async (page:string) => {
+    const res = await fetch(`${url}?page=${page}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
@@ -18,17 +19,17 @@ export default function UserFeed() {
     const json = await res.json()
     return json;
   }
-  const { data } = useSWR(currentUrl, fetcher)
+  const { data } = useSWR(currentPage, fetcher)
   return (
     <>
       {data && data.data.map((data: Article) => (
         <div key={data.id} className="article-preview">
           <div className="article-meta">
-            <Link href={`/profile/${data.author.username}`}>
+            <Link href={`#`}>
               <img src={`${imageUrl}${data.author.image}`} />
             </Link>
             <div className="info">
-              <Link href={`/profile/${data.author.username}`} className="author">
+              <Link href={`#`} className="author">
                 {data.author.username}
               </Link>
               <span className="date">{data.updated_at}</span>
@@ -77,7 +78,7 @@ export default function UserFeed() {
           } else {
             return (
               <li key={`${link.label} ${index}`} className="page-item">
-                <div className="page-link" onClick={() => setCurrentUrl(link.url)}>
+                <div className="page-link" onClick={() => setCurrentPage(link.label)}>
                   {link.label}
                 </div>
               </li>

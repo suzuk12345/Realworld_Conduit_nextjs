@@ -6,23 +6,24 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function GlobalFeed() {
-  const [currentUrl, setCurrentUrl] = useState<string | null>(`${apiUrl}articles/globalFeed`)
-  const fetcher = async (url:string) => {
-    const res = await fetch(url)
+  const url: string = `${apiUrl}articles/globalFeed`
+  const [currentPage, setCurrentPage] = useState<string>(url)
+  const fetcher = async (page:string) => {
+    const res = await fetch(`${url}?page=${page}`)
     const json = await res.json()
     return json;
   }
-  const { data } = useSWR(currentUrl, fetcher)
+  const { data } = useSWR(currentPage, fetcher)
   return (
     <>
       {data && data.data.map((data: Article) => (
         <div key={data.id} className="article-preview">
           <div className="article-meta">
-            <Link href={`/profile/${data.author.username}`}>
+            <Link href={`#`}>
               <img src={`${imageUrl}${data.author.image}`} />
             </Link>
             <div className="info">
-              <Link href={`/profile/${data.author.username}`} className="author">
+              <Link href={`#`} className="author">
                 {data.author.username}
               </Link>
               <span className="date">{data.updated_at}</span>
@@ -71,7 +72,7 @@ export default function GlobalFeed() {
           } else {
             return (
               <li key={`${link.label} ${index}`} className="page-item">
-                <div className="page-link" onClick={() => setCurrentUrl(link.url)}>
+                <div className="page-link" onClick={() => setCurrentPage(link.label)}>
                   {link.label}
                 </div>
               </li>

@@ -15,7 +15,7 @@ export default function HeaderProfile() {
     className={
       pathName.startsWith("/profile") ? "nav-link active" : "nav-link"
     }
-    href={`/profile/${username}`}
+    href={`#`}
   >
     <img src={`${imageUrl}${image}`} className="user-pic" alt="プロフィール画像"/>
     {username}

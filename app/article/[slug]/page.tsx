@@ -1,4 +1,6 @@
-import { Article, getArticle } from "@/lib/article/utils";
+'use client'
+
+import { getArticle } from "@/lib/article/utils";
 import ArticleContent from "@/ui/article/ArticleContent";
 import ArticleMeta from "@/ui/article/ArticleMeta";
 import Header from "@/ui/header/Header";

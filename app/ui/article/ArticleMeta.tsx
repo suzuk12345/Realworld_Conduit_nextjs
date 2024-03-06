@@ -11,11 +11,11 @@ export default function ArticleMeta({ article }: { article: Article }) {
   const author = article.author;
   return (
     <div className="article-meta">
-      <Link href={`/profile/${author.username}`}>
+      <Link href={`#`}>
         <img src={`${imageUrl}${author.image}`} />
       </Link>
       <div className="info">
-        <Link href={`/profile/${author.username}`} className="author">
+        <Link href={`#`} className="author">
         {author.username}
         </Link>
         <span className="date">{article.updated_at}</span>

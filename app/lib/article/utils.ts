@@ -51,7 +51,6 @@ export const createArticle = async (title: string, description: string, body: st
 export const getArticle = async (slug: string): Promise<Article> => {
     noStore();
     const article = await fetch(`${apiUrl}articles/${slug}`);
-    console.log(article)
     const articleObj = await article.json();
     return articleObj.article;
 };

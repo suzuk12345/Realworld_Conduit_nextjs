@@ -1,3 +1,5 @@
+'use client'
+
 import Create from "@/ui/editor/Create";
 import Header from "@/ui/header/Header";
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { getArticle } from "@/lib/article/utils";
 import Update from "@/ui/editor/Update";
 import Header from "@/ui/header/Header";

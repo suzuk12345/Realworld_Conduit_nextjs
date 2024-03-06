@@ -23,10 +23,9 @@ export default function Login() {
       if (response.ok) {
         const userObj = await response.json()
 
-        setCookie("token", userObj.user.token, {maxAge: 60 * 5})
-        // setCookie("token", userObj.user.token, {maxAge: 60 * 3, httpOnly: true})
-        setCookie("username", userObj.user.username, {maxAge: 60 * 5})
-        setCookie("image", userObj.user.image, {maxAge: 60 * 5})
+        setCookie("token", userObj.user.token, {maxAge: 60 * 10})
+        setCookie("username", userObj.user.username, {maxAge: 60 * 10})
+        setCookie("image", userObj.user.image, {maxAge: 60 * 10})
         router.push("/")
       }
     } catch (error) {

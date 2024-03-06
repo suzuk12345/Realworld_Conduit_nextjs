@@ -14,7 +14,7 @@ export const authenticatedLinks: Links = [
   },
   {
     key: "Settings",
-    href: "/settings",
+    href: "#",
     value: " Settings",
   },
 ];
@@ -28,7 +28,7 @@ export const unauthenticatedLinks: Links = [
   },
   {
     key: "Sign up",
-    href: "/register",
+    href: "#",
     value: " Sign up",
   },
 ];
