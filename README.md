@@ -32,7 +32,7 @@ Conduit は [RealWorld](https://demo.realworld.io/#/) で作成する Medium.com
 ### 実装済み
 
 -   JWT 認証
--   ユーザー CRU-
+-   ユーザー -RU-
 -   記事 CRUD
 -   タグ機能
 -   ダミー生成
@@ -40,6 +40,7 @@ Conduit は [RealWorld](https://demo.realworld.io/#/) で作成する Medium.com
 
 ### 未実装
 
+-   ユーザー作成
 -   記事へのコメント CR-D
 -   記事お気に入り
 -   記事マークダウン反映
@@ -111,3 +112,13 @@ HTTPヘッダーにトークンを付与してリクエスト送信
 
 アプリはVercelにデプロイ済みです。以下URLからアクセスできます。
 - https://realworld-conduit-nextjs.vercel.app/
+
+ユーザー作成ページは実装していないため、ユーザーについては以下のテスト用ユーザーを使用してください。
+
+- テストユーザー1
+`email`: test@test.com
+`password`: password
+
+- テストユーザー2
+`email`: suzuki@test.com
+`password`: password
