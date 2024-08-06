@@ -108,17 +108,17 @@ HTTPヘッダーにトークンを付与してリクエスト送信
 
 バックエンドのMiddlewareで認証・ユーザー識別処理
 
-# Vercel
+# Vercel (バックエンド停止中)
 
-アプリはVercelにデプロイ済みです。以下URLからアクセスできます。
-- https://realworld-conduit-nextjs.vercel.app/
+~~アプリはVercelにデプロイ済みです。以下URLからアクセスできます。~~
+~~- https://realworld-conduit-nextjs.vercel.app/~~
 
-ユーザー作成ページは実装していないため、ユーザーについては以下のテスト用ユーザーを使用してください。
+~~ユーザー作成ページは実装していないため、ユーザーについては以下のテスト用ユーザーを使用してください。~~
 
-- テストユーザー1
-`email`: test@test.com
-`password`: password
+~~- テストユーザー1~~
+~~`email`: test@test.com~~
+~~`password`: password~~
 
-- テストユーザー2
-`email`: suzuki@test.com
-`password`: password
+~~- テストユーザー2~~
+~~`email`: suzuki@test.com~~
+~~`password`: password~~
